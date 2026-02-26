@@ -1,14 +1,15 @@
-import Login from './components/Login.jsx'
-import Register from './components/Register.jsx'
+import AuthWrapper from './components/AuthWrapper.jsx'
+import Display from './components/Display.jsx'
+import {Toaster} from 'react-hot-toast'
 import './App.css'
 function App() {
   
 
   return (
-    <div>
-      <Login/>
-      <Register />
-    </div>
+    <AuthWrapper>
+      <Toaster/>
+      <Display/>
+    </AuthWrapper>
   )
 }
 
