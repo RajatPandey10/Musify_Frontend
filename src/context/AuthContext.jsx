@@ -1,6 +1,6 @@
 import {createContext,useContext} from 'react';
 
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
 
 import axios from "axios";
 
@@ -20,7 +20,20 @@ export const AuthProvider = ({children})=>{
 
     const [user,setUser] = useState(null);
     const [token,setToken] = useState(localStorage.getItem("userToken"));
-    const [loading,setLoading]=useState(false);
+    const [loading,setLoading]=useState(true);
+    
+    useEffect(()=>{
+        
+        const storedToken = localStorage.getItem("userToken");
+        const storedUser = localStorage.getItem("userData");
+        
+        if(storedToken && storedUser){
+            setToken(storedToken);
+            setUser(JSON.parse(storedUser));
+        }
+        setLoading(false);
+
+    },[]);
 
     const register = async (email,password)=>{
         try{
@@ -84,12 +97,23 @@ export const AuthProvider = ({children})=>{
         return !!token && !!user;
     }
 
-    
+    const logout = ()=>{
+        setToken(null);
+        setUser(null);
+        localStorage.removeItem("userToken");
+        localStorage.removeItem("userData");
+
+    }
+
+
 
     const contextValue={
         register,
         login,
-        isAuthenticated
+        isAuthenticated,
+        loading,
+        logout,
+        user
     }
 
     return(

@@ -2,7 +2,7 @@ import { assets } from "../assets/assets";
 import {useState} from 'react'
 import toast from "react-hot-toast"; 
 import {useAuth} from '../context/AuthContext.jsx';
-const Login = ()=>{
+const Login = ({onSwitchToRegister})=>{
 
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
@@ -62,6 +62,12 @@ const Login = ()=>{
                     <form className='space-y-6'
                         onSubmit={handleSubmit}
                     >   
+                        {error && (
+                            <div className='bg-red-500/20 border-red-500 rounded-lg p-3 text-red-300'>
+                                {error}
+                            </div>
+                        )}
+                        
                          {/* email field */}
                         <div>
                             <label htmlFor='email' className='block text-sm font-medium text-gray-200 mb-2'>
@@ -90,8 +96,18 @@ const Login = ()=>{
 
                         {/* Submit button */}
 
-                        <button className='w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled-cursor-not-allowed transition-all duration-200 transform hover:scale-105'>
-                            Login
+                        <button 
+                            disabled={loading}
+                            className='w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled-cursor-not-allowed transition-all duration-200 transform hover:scale-105'>
+                            {loading ?(
+                                 <div className='flex items-center'>
+                                    <div className='animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2'></div>
+                                    Signing in...
+
+                                </div>
+                            ):(
+                                'Sign In'
+                            )}
                         </button>
 
                          {/* Switch to reigister */}
@@ -99,7 +115,9 @@ const Login = ()=>{
                     <div className='mt-6 text-center'>
                         <p className='text-sm text-gray-400'>
                             Don't have an account?
-                            <button className=' text-green-400 hover:text-green-300 font-medium transition-colors cursor-pointer'>
+                            <button 
+                            onClick={onSwitchToRegister}
+                            className=' text-green-400 hover:text-green-300 font-medium transition-colors cursor-pointer'>
                                 Sign up here
                             </button>
                         </p>
