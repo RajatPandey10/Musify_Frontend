@@ -3,8 +3,15 @@ import DisplayHome from './DisplayHome';
 import DisplayAlbum from './DisplayAlbum';
 import Search from './Search';
 import Navbar from './Navbar.jsx';
+import {useContext} from 'react';
+import {PlayerContext} from '../context/PlayerContext.jsx';
 
 const Display = ()=>{
+
+    const {albumsData} = useContext(PlayerContext);
+    const location = useLocation();
+    
+
     return(
         <div className='w-[100%] m-2 bg-[#121212] text-white lg:w-[75%] lg:ml-0 flex flex-col'>
 
@@ -19,7 +26,7 @@ const Display = ()=>{
                         <Route path="/" 
                             element={<DisplayHome/>} 
                         />
-                        <Route path="/album" 
+                        <Route path="/album/:id" 
                             element={<DisplayAlbum/>}
                         />
                         <Route path="/search" 

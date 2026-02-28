@@ -60,7 +60,7 @@ const Sidebar = ()=>{
 
             <div className='bg-[#121212] h=[85%] rounded'>
 
-                <div className='flex items-center justify-betwen p-4'>
+                <div className='flex items-center justify-between p-4'>
 
                     <div className='flex items-center gap-3 '>
 
@@ -81,6 +81,19 @@ const Sidebar = ()=>{
                     <h1>Create your first playlist</h1>
 
                     <p className='font-light'>It's easy we will help you</p>
+                    <button className='px-4 py-1.5 bg-white text-[15px] text-black rounded-full mt-4 cursor-pointer'>
+                        Create playlist
+                    </button>
+
+                </div>
+                <div className='p-4 bg-[#212424] m-2 rounded font-semibold flex-col items-start justify-start pl-4 mt-4'>
+                    <h1>Let's find some podcasts to follow</h1>
+                    <p className='font-light'>
+                        We will keep you update on new episodes
+                    </p>
+                    <button className='px-4 py-1.5 bg-white text-[15px] text-black rounded-full mt-4 cursor-pointer'>
+                        Browse podcats
+                    </button>
 
                 </div>
 
