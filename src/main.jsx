@@ -4,6 +4,7 @@ import './index.css'
 
 import { AuthProvider } from './context/AuthContext';
 import { PlayerContextProvider } from './context/PlayerContext';
+import { SearchProvider } from './context/SearchContext';
 import App from './App.jsx'
 import {BrowserRouter} from 'react-router-dom'
 
@@ -11,7 +12,9 @@ createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <AuthProvider>
       <PlayerContextProvider>
-        <App/>
+        <SearchProvider>
+          <App/>
+        </SearchProvider>  
       </PlayerContextProvider>
     </AuthProvider>
   </BrowserRouter>

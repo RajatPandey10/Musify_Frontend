@@ -3,7 +3,13 @@ import Display from './components/Display.jsx'
 import Sidebar from './components/Sidebar.jsx'
 import {Toaster} from 'react-hot-toast'
 import './App.css'
+import Player from './components/Player.jsx';
+import {useContext} from 'react';
+import {PlayerContext} from './context/PlayerContext.jsx';
+
 function App() {
+
+  const {audioRef,track} = useContext(PlayerContext);
   
 
   return (
@@ -21,7 +27,13 @@ function App() {
           </div>
 
           {/* Player component */}
-
+          <Player />
+          <audio 
+            ref={audioRef}
+            src={track?track.file :""}
+            preload='auto'
+          >
+          </audio>
         </div>
         
       </AuthWrapper>
