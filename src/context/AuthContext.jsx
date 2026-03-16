@@ -2,7 +2,7 @@ import {createContext,useContext,useState,useEffect} from 'react';
 
 
 import axios from "axios";
-export const API_BASE_URL = "http://localhost:8080";
+export const API_BASE_URL = "https://musify-backend-2ofg.onrender.com";
 
 export const AuthContext = createContext();
 
@@ -61,7 +61,7 @@ export const AuthProvider = ({children})=>{
 
     const login = async (email,password)=>{
         try{
-            const response = await axios.post(`${API_BASE_URL}/api/auth/login`,{email,password});
+            const response = await axios.post(`${API_BASE_URL}/api/auth/login`,{email,password,portal:"user"});
             if(response.status === 200){
                 setToken(response.data.token);
                 setUser({
